@@ -1,4 +1,4 @@
-module github.com/KnutZuidema/golio
+module github.com/beltsmith/golio
 
 go 1.12
 
