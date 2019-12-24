@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/KnutZuidema/golio/mock"
-	"github.com/KnutZuidema/golio/model"
+	"github.com/beltsmith/golio/mock"
+	"github.com/beltsmith/golio/model"
 )
 
 func TestNewDataDragonClient(t *testing.T) {

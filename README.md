@@ -1,7 +1,7 @@
-[![Documentation](https://godoc.org/github.com/KnutZuidema/golio?status.svg)](https://godoc.org/github.com/KnutZuidema/golio)
-[![Build Status](https://travis-ci.com/KnutZuidema/golio.svg?branch=master)](https://travis-ci.com/KnutZuidema/golio)
-[![Go Report Card](https://goreportcard.com/badge/github.com/KnutZuidema/golio)](https://goreportcard.com/report/github.com/KnutZuidema/golio)
-[![codecov](https://codecov.io/gh/KnutZuidema/golio/branch/master/graph/badge.svg)](https://codecov.io/gh/KnutZuidema/golio)
+[![Documentation](https://godoc.org/github.com/beltsmith/golio?status.svg)](https://godoc.org/github.com/beltsmith/golio)
+[![Build Status](https://travis-ci.com/beltsmith/golio.svg?branch=master)](https://travis-ci.com/beltsmith/golio)
+[![Go Report Card](https://goreportcard.com/badge/github.com/beltsmith/golio)](https://goreportcard.com/report/github.com/beltsmith/golio)
+[![codecov](https://codecov.io/gh/beltsmith/golio/branch/master/graph/badge.svg)](https://codecov.io/gh/beltsmith/golio)
 
 # Golio
 
@@ -20,7 +20,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/KnutZuidema/golio"
+	"github.com/beltsmith/golio"
 )
 
 func main() {

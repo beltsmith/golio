@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/KnutZuidema/golio/model"
+	"github.com/beltsmith/golio/model"
 
 	log "github.com/sirupsen/logrus"
 )

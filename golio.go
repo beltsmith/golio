@@ -23,7 +23,7 @@ package golio
 import (
 	log "github.com/sirupsen/logrus"
 
-	"github.com/KnutZuidema/golio/api"
+	"github.com/beltsmith/golio/api"
 )
 
 // Client is a client for both the Riot API and the Data Dragon service
