@@ -14,4 +14,6 @@ type LeagueEntry struct {
 	Rank         string     `json:"rank"`
 	SummonerID   string     `json:"summonerId"`
 	LeaguePoints int        `json:"leaguePoints"`
+	Tier         string     `json:"tier"`
+	LeagueID     string     `json:"leagueId"`
 }
