@@ -532,6 +532,7 @@ func (c RiotAPIClient) doRequest(method, endpoint string, body io.Reader) (*http
 		"Region":   c.Region,
 		"endpoint": endpoint,
 	})
+	logger.Info("Performing request")
 	request, err := c.newRequest(method, endpoint, body)
 	if err != nil {
 		logger.Error(err)
