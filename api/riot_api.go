@@ -229,20 +229,30 @@ func (c RiotAPIClient) GetMatch(id int) (*model.Match, error) {
 }
 
 // GetMatchesByAccount returns a specified range of matches played on the account
-func (c RiotAPIClient) GetMatchesByAccount(accountID string, beginIndex, endIndex int) (*model.Matchlist, error) {
+func (c RiotAPIClient) GetQueueMatchesByAccount(accountID string, queue, beginIndex, endIndex int) (*model.Matchlist, error) {
 	logger := c.logger.WithFields(log.Fields{
 		"method": "GetMatchesByAccount",
 		"Region": c.Region,
 	})
 	var matches *model.Matchlist
-	if err := c.getInto(
-		fmt.Sprintf(endpointGetMatchesByAccount, accountID, beginIndex, endIndex),
-		&matches,
-	); err != nil {
+	var endpoint string
+
+	if queue == -1 {
+		endpoint = fmt.Sprintf(endpointGetMatchesByAccount, accountID, beginIndex, endIndex)
+	} else {
+		endpoint = fmt.Sprintf(endpointGetQueueMatchesByAccount, accountID, queue, beginIndex, endIndex)
+	}
+
+	if err := c.getInto(endpoint, &matches); err != nil {
 		logger.Error(err)
 		return nil, err
 	}
 	return matches, nil
+}
+
+// GetMatchesByAccount returns a specified range of matches played on the account
+func (c RiotAPIClient) GetMatchesByAccount(accountID string, beginIndex, endIndex int) (*model.Matchlist, error) {
+	return c.GetQueueMatchesByAccount(accountID, -1, beginIndex, endIndex)
 }
 
 // MatchStreamValue value returned by GetMatchesByAccountStream, containing either a reference to a match or an error
@@ -253,7 +263,7 @@ type MatchStreamValue struct {
 
 // GetMatchesByAccountStream returns all matches played on this account as a stream, requesting new until there are no
 // more new games
-func (c RiotAPIClient) GetMatchesByAccountStream(accountID string) <-chan MatchStreamValue {
+func (c RiotAPIClient) GetQueueMatchesByAccountStream(accountID string, queue int) <-chan MatchStreamValue {
 	logger := c.logger.WithFields(log.Fields{
 		"method": "GetMatchesByAccountStream",
 		"Region": c.Region,
@@ -262,7 +272,7 @@ func (c RiotAPIClient) GetMatchesByAccountStream(accountID string) <-chan MatchS
 	go func() {
 		start := 0
 		for {
-			matches, err := c.GetMatchesByAccount(accountID, start, start+100)
+			matches, err := c.GetQueueMatchesByAccount(accountID, start, start+100, queue)
 			if err != nil {
 				logger.Error(err)
 				cMatches <- MatchStreamValue{Error: err}
@@ -281,6 +291,10 @@ func (c RiotAPIClient) GetMatchesByAccountStream(accountID string) <-chan MatchS
 		}
 	}()
 	return cMatches
+}
+
+func (c RiotAPIClient) GetMatchesByAccountStream(accountID string) <-chan MatchStreamValue {
+	return c.GetQueueMatchesByAccountStream(accountID, -1)
 }
 
 // GetCurrentGame returns a currently running game for a summoner

@@ -118,6 +118,7 @@ const (
 	endpointMatchBase                    = "/lol/match/v4"
 	endpointGetMatch                     = endpointMatchBase + "/matches/%d"
 	endpointGetMatchesByAccount          = endpointMatchBase + "/matchlists/by-account/%s?beginIndex=%d&endIndex=%d"
+	endpointGetQueueMatchesByAccount     = endpointMatchBase + "/matchlists/by-account/%s?queue=%d&beginIndex=%d&endIndex=%d"
 	endpointSummonerBase                 = "/lol/summoner/v4"
 	endpointGetSummonerBySummonerID      = endpointSummonerBase + "/summoners/%s"
 	endpointGetSummonerBy                = endpointSummonerBase + "/summoners/by-%s/%s"
