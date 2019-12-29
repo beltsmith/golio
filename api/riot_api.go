@@ -272,7 +272,7 @@ func (c RiotAPIClient) GetQueueMatchesByAccountStream(accountID string, queue in
 	go func() {
 		start := 0
 		for {
-			matches, err := c.GetQueueMatchesByAccount(accountID, start, start+100, queue)
+			matches, err := c.GetQueueMatchesByAccount(accountID, queue, start, start+100)
 			if err != nil {
 				logger.Error(err)
 				cMatches <- MatchStreamValue{Error: err}
